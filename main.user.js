@@ -1392,22 +1392,42 @@
         document.getElementById('z2u-service-count').textContent = totalServices;
     }
 
-    // 渲染游戏列表
-    function renderGamesList(searchTerm = '') {
+    // 渲染游戏列表（优化版：虚拟滚动）
+    let currentGamesPage = 0;
+    const GAMES_PER_PAGE = 50;
+    let filteredGames = [];
+    
+    function renderGamesList(searchTerm = '', reset = true) {
         const gamesList = document.getElementById('z2u-games-list');
-        gamesList.innerHTML = '';
-
-        // 过滤游戏
-        const filtered = scraperData.games.filter(game =>
-            game.名称.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-
-        if (filtered.length === 0) {
-            gamesList.innerHTML = '<div style="padding: 12px; color: #B0B0B0; text-align: center;">未找到匹配的游戏</div>';
-            return;
+        
+        if (reset) {
+            gamesList.innerHTML = '';
+            currentGamesPage = 0;
+            
+            // 过滤游戏
+            filteredGames = scraperData.games.filter(game =>
+                game.名称.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            
+            if (filteredGames.length === 0) {
+                gamesList.innerHTML = '<div style="padding: 12px; color: #B0B0B0; text-align: center;">未找到匹配的游戏</div>';
+                return;
+            }
+            
+            // 显示统计信息
+            const statsDiv = document.createElement('div');
+            statsDiv.style.cssText = 'padding: 8px 12px; background: rgba(23,162,184,0.1); color: #17A2B8; font-size: 11px; border-radius: 4px; margin-bottom: 5px;';
+            statsDiv.innerHTML = `📊 共找到 <b>${filteredGames.length}</b> 个游戏${searchTerm ? ` (搜索: "${searchTerm}")` : ''}`;
+            gamesList.appendChild(statsDiv);
         }
 
-        filtered.forEach((game, index) => {
+        // 计算当前页要渲染的游戏
+        const start = currentGamesPage * GAMES_PER_PAGE;
+        const end = Math.min(start + GAMES_PER_PAGE, filteredGames.length);
+        const gamesToRender = filteredGames.slice(start, end);
+
+        // 渲染当前页的游戏
+        gamesToRender.forEach((game, index) => {
             const item = document.createElement('div');
             item.className = 'z2u-game-item';
             item.innerHTML = `
@@ -1427,6 +1447,20 @@
 
             gamesList.appendChild(item);
         });
+        
+        // 显示加载更多按钮（如果还有更多游戏）
+        currentGamesPage++;
+        if (end < filteredGames.length) {
+            const loadMoreBtn = document.createElement('div');
+            loadMoreBtn.style.cssText = 'padding: 10px; text-align: center; color: #17A2B8; cursor: pointer; background: rgba(23,162,184,0.1); border-radius: 4px; margin-top: 5px; font-size: 12px;';
+            loadMoreBtn.innerHTML = `⬇️ 加载更多 (还有 ${filteredGames.length - end} 个游戏)`;
+            loadMoreBtn.onclick = (e) => {
+                e.stopPropagation();
+                loadMoreBtn.remove();
+                renderGamesList(searchTerm, false);
+            };
+            gamesList.appendChild(loadMoreBtn);
+        }
     }
 
     // 当游戏被选中时
