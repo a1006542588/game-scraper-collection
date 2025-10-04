@@ -1,0 +1,23 @@
+# 开发文档（不上传到 GitHub）
+Z2U_Cloudflare集成方案.md
+Z2U产品列表元素.md
+Z2U抓取器v6.0更新说明.md
+Z2U抓取订单所需元素.md
+Z2U服务列表元素.md
+Z2U页面类型检测说明.md
+PA.js
+
+# 上传教程和脚本（本地使用）
+GITHUB_UPLOAD_GUIDE.md
+QUICK_START.md
+脚本使用说明.md
+upload.ps1
+update.ps1
+
+# 临时文件
+*.tmp
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
