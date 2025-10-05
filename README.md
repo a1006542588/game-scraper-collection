@@ -1,394 +1,789 @@
-# 🎮 Game Trading Platform Scrapers# 🎮 G2G Scraper - 完整使用说明
+# 🎮 Game Trading Platform Scrapers# 🎮 Game Trading Platform Scrapers
 
 
 
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)[![Version](https://img.shields.io/badge/version-1.1.4-blue.svg)](https://github.com/a1006542588/g2g-scraper)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-[![Tampermonkey](https://img.shields.io/badge/Tampermonkey-compatible-orange.svg)](https://www.tampermonkey.net/)[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Tampermonkey](https://img.shields.io/badge/Tampermonkey-compatible-orange.svg)](https://www.tampermonkey.net/)[![Tampermonkey](https://img.shields.io/badge/Tampermonkey-compatible-orange.svg)](https://www.tampermonkey.net/)
 
-[![Platform](https://img.shields.io/badge/platform-Tampermonkey-orange.svg)](https://www.tampermonkey.net/)
+[![Platforms](https://img.shields.io/badge/platforms-3-blue.svg)]()[![Platform](https://img.shields.io/badge/platform-3_platforms-blue.svg)]()
 
-> 游戏交易平台数据采集工具集 - 支持 Z2U、G2G、PA 等多个平台的自动化数据采集
 
-> 一个功能强大的 Tampermonkey 用户脚本，专为 G2G.com 平台设计，支持自动化采集游戏列表、产品订单等数据，提供CSV/JSON导出功能。
 
-[English](#english) | [中文](#中文)
+> 游戏交易平台数据采集工具集 - 支持 Z2U、G2G、PlayerAuctions 三大平台的自动化数据采集> 游戏交易平台数据采集工具集 - 支持 Z2U、G2G、PlayerAuctions 三大平台的自动化数据采集
 
----
 
----
 
-## 📋 目录
+[English](#english) | [中文](#chinese)[English](#english) | [中文](#中文)
 
-## 📋 目录
 
-- [功能概览](#-功能概览)
 
-- [项目概览](#-项目概览)- [快速开始](#-快速开始)
+------
 
-- [快速开始](#-快速开始)- [详细使用教程](#-详细使用教程)
 
-- [项目详情](#-项目详情)- [数据格式说明](#-数据格式说明)
 
-  - [Z2U Scraper](#1-z2u-scraper)- [常见问题](#-常见问题)
+<div id="chinese"></div>## 📋 目录
 
-  - [G2G Scraper](#2-g2g-scraper)- [更新日志](#-更新日志)
 
-  - [PA Scraper](#3-pa-scraper)- [技术说明](#-技术说明)
 
-- [安装说明](#-安装说明)
+## 📋 目录- [项目概览](#-项目概览)
 
-- [功能对比](#-功能对比)---
+- [快速安装](#-快速安装)
+
+- [项目概览](#-项目概览)- [使用教程](#-使用教程)
+
+- [快速安装](#-快速安装)  - [Z2U Scraper 使用说明](#1-z2u-scraper-使用说明)
+
+- [使用教程](#-使用教程)  - [G2G Scraper 使用说明](#2-g2g-scraper-使用说明)
+
+  - [Z2U Scraper](#1-z2u-scraper-使用说明)  - [PA Scraper 使用说明](#3-pa-scraper-使用说明)
+
+  - [G2G Scraper](#2-g2g-scraper-使用说明)- [功能对比](#-功能对比)
+
+  - [PA Scraper](#3-pa-scraper-使用说明)- [常见问题](#-常见问题)
+
+- [功能对比](#-功能对比)- [许可证](#-许可证)
 
 - [常见问题](#-常见问题)
 
-- [许可证](#-许可证)## ✨ 功能概览
+- [许可证](#-许可证)---
 
 
 
----### 核心功能
+---## 🎯 项目概览
 
 
 
-## 🎯 项目概览| 功能模块 | 说明 | 状态 |
-
-|---------|------|------|
-
-本仓库包含三个独立的 Tampermonkey 用户脚本，分别用于不同游戏交易平台的数据采集：| 🎮 游戏列表采集 | 自动爬取所有游戏，支持7种服务类型 | ✅ |
-
-| 🛍️ 产品订单采集 | 三种模式（单页/多页/全部），支持关键字筛选 | ✅ |
-
-| 项目 | 平台 | 版本 | 状态 || 💾 数据导出 | CSV/JSON格式，Excel完美兼容 | ✅ |
-
-|------|------|------|------|| 🔍 关键字筛选 | 标题关键词过滤 | ✅ |
-
-| **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.1 | ✅ 稳定 || 📊 实时统计 | 游戏数量、订单数量、当前页面 | ✅ |
-
-| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | ✅ 稳定 || 🗑️ 数据管理 | 独立清除游戏/订单，互不影响 | ✅ |
-
-| **PA Scraper** | PA 平台 | v1.0.0 | ✅ 稳定 || 🎨 美观界面 | 侧边栏浮动面板，响应式设计 | ✅ |
-
-| 🛡️ 超时保护 | 网络慢速下自动重试（20秒） | ✅ |
-
----
-
-### 支持的服务类型
-
-## 🚀 快速开始
-
-1. 🪙 **Game Coins** - 游戏金币
-
-### 前置要求2. 📦 **Items** - 游戏物品
-
-3. 👤 **Accounts** - 游戏账号
-
-1. 安装浏览器扩展 [Tampermonkey](https://www.tampermonkey.net/)4. 🚀 **Boosting** - 代练服务
-
-   - [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)5. 💳 **Top-up** - 充值服务
-
-   - [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/)6. 🎓 **Coaching** - 教练服务
-
-   - [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)7. 🎁 **Gift Cards** - 礼品卡/皮肤
+## 🎯 项目概览本仓库包含三个独立的 Tampermonkey 用户脚本，分别用于不同游戏交易平台的数据采集：
 
 
 
-### 安装脚本---
+本仓库包含三个独立的 Tampermonkey 用户脚本，用于不同游戏交易平台的数据采集：| 项目 | 平台 | 版本 | 状态 |
+
+|------|------|------|------|
+
+| 项目 | 平台 | 版本 | 状态 || **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.3 | ✅ 稳定 |
+
+|------|------|------|------|| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | ✅ 稳定 |
+
+| **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.3 | ✅ 稳定 || **PA Scraper** | [PlayerAuctions.com](https://www.playerauctions.com) | v8.7.0 | ✅ 稳定 |
+
+| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | ✅ 稳定 |
+
+| **PA Scraper** | [PlayerAuctions.com](https://www.playerauctions.com) | v8.7.0 | ✅ 稳定 |---
 
 
 
-选择你需要的平台脚本点击安装：## 🚀 快速开始
+---## 🚀 快速安装
 
 
 
-| 平台 | 安装链接 |### 步骤 1: 安装 Tampermonkey
+## 🚀 快速安装### 步骤 1: 安装 Tampermonkey
 
-|------|---------|
 
-| **Z2U** | [安装 Z2U Scraper](https://github.com/a1006542588/game-scraper-collection/raw/master/Z2U-Project/Z2U-scraper.user.js) |根据你的浏览器选择对应的扩展：
 
-| **G2G** | [安装 G2G Scraper](https://github.com/a1006542588/game-scraper-collection/raw/master/G2G-Project/g2g-scraper.user.js) |
+### 步骤 1: 安装 Tampermonkey根据你的浏览器选择对应的扩展：
 
-| **PA** | [安装 PA Scraper](https://github.com/a1006542588/game-scraper-collection/raw/master/PA-Project/pa-scraper.user.js) || 浏览器 | 下载链接 |
+
+
+根据你的浏览器选择：| 浏览器 | 下载链接 |
 
 |-------|---------|
 
----| Chrome | [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) |
+| 浏览器 | 下载链接 || Chrome | [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) |
 
-| Firefox | [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tampermonkey/) |
+|-------|---------|| Firefox | [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tampermonkey/) |
 
-## 📖 项目详情| Edge | [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) |
+| Chrome | [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) || Edge | [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) |
 
-| Safari | [Safari Extensions](https://www.tampermonkey.net/?browser=safari) |
+| Firefox | [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tampermonkey/) || Safari | [Safari Extensions](https://www.tampermonkey.net/?browser=safari) |
 
-### 1. Z2U Scraper| Opera | [Opera Add-ons](https://addons.opera.com/extensions/details/tampermonkey-beta/) |
+| Edge | [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) || Opera | [Opera Add-ons](https://addons.opera.com/extensions/details/tampermonkey-beta/) |
 
 
 
-**平台**: [Z2U.com](https://www.z2u.com)  ### 步骤 2: 安装脚本
+### 步骤 2: 安装脚本### 步骤 2: 安装脚本
 
-**版本**: v7.4.1
 
-**方法一：直接安装（推荐）**
 
-#### ✨ 核心功能
+点击对应链接安装：选择你需要的平台脚本点击安装：
 
-1. 点击这个链接: [g2g-scraper.user.js](https://github.com/a1006542588/g2g-scraper/raw/master/g2g-scraper.user.js)
 
-- 🎮 **游戏列表抓取** - 自动抓取 Z2U 平台所有游戏类目数据2. Tampermonkey 会自动识别并弹出安装页面
 
-- 📦 **订单批量抓取** - 支持按游戏批量抓取订单信息3. 点击 **"安装"** 按钮
+| 平台 | 安装链接 || 平台 | 安装链接 |
 
-- 🔄 **增量更新** - 智能识别新增订单，避免重复抓取
+|------|---------||------|---------|
 
-- 💾 **数据导出** - 支持导出为 Excel (XLSX) 格式**方法二：手动安装**
+| **Z2U** | [安装 Z2U Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/Z2U-Project/Z2U-scraper.user.js) || **Z2U** | [安装 Z2U Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/Z2U-Project/Z2U-scraper.user.js) |
 
-- 🛡️ **Cloudflare 绕过** - 自动检测并绕过 CF 验证
+| **G2G** | [安装 G2G Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js) || **G2G** | [安装 G2G Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js) |
 
-- 🎨 **美观界面** - 悬浮按钮 + 控制面板1. 下载 `g2g-scraper.user.js` 文件
+| **PA** | [安装 PA Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/PA-Project/pa-scraper.user.js) || **PA** | [安装 PA Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/PA-Project/pa-scraper.user.js) |
 
-2. 打开 Tampermonkey 管理面板
 
-#### 📊 数据字段3. 点击 **"+"** 创建新脚本
 
-4. 复制粘贴文件内容
+------
 
-- 游戏名称、服务类型、价格区间5. 按 `Ctrl + S` 保存
 
-- 卖家信息、库存状态、交付时间
 
-- 订单详情、更新时间### 步骤 3: 验证安装
+## 📖 使用教程## 📖 使用教程
 
 
 
-#### 📁 文件位置1. 访问 [G2G.com](https://www.g2g.com)
+### 1. Z2U Scraper 使用说明### 1. Z2U Scraper 使用说明
 
-2. 页面右侧应该出现一个侧边栏面板
 
-```3. 如果没有出现，刷新页面或检查 Tampermonkey 是否启用
 
-Z2U-Project/
+**平台**: [Z2U.com](https://www.z2u.com)  **平台**: [Z2U.com](https://www.z2u.com)  
 
-├── Z2U-scraper.user.js    - 主脚本---
+**版本**: v7.4.3**版本**: v7.4.3
 
-└── docs/                   - 技术文档
 
-```## 📖 详细使用教程
 
+#### ✨ 主要功能#### ✨ 主要功能
 
 
----### 场景一: 爬取游戏列表
 
+- 🎮 自动抓取游戏列表- 🎮 自动抓取游戏列表和服务类型
 
+- 📦 批量抓取产品订单- � 批量抓取产品订单数据
 
-### 2. G2G Scraper**目标**: 获取 G2G 平台所有游戏数据
+- 💾 导出 Excel (XLSX) 格式- 💾 导出 Excel (XLSX) 格式
 
+- 🛡️ 自动绕过 Cloudflare 验证- 🛡️ 自动绕过 Cloudflare 验证
 
+- 🔄 增量更新（避免重复）- 🔄 增量更新，避免重复抓取
 
-**平台**: [G2G.com](https://www.g2g.com)  #### 操作步骤
 
-**版本**: v1.1.4
 
-1. **访问 Trending 页面**
+#### 📝 使用步骤#### 📝 使用步骤
 
-#### ✨ 核心功能   ```
 
-   https://www.g2g.com/trending/game-coins
 
-- 🎮 **游戏列表采集** - 自动爬取所有游戏，支持7种服务类型   ```
+**1. 抓取游戏列表****第一步：抓取游戏列表**
 
-  - 🪙 Game Coins（游戏金币）   （或任意 Trending 服务页面）
 
-  - 📦 Items（游戏物品）
 
-  - 👤 Accounts（游戏账号）2. **启动爬取**
+```1. 访问 [Z2U.com](https://www.z2u.com) 任意页面
 
-  - 🚀 Boosting（代练服务）   ```
+访问 Z2U.com → 页面出现悬浮面板 → 点击"开始抓取游戏"→ 等待完成2. 页面会出现悬浮控制面板
 
-  - 💳 Top-up（充值服务）   在侧边栏中:
+```3. 点击 **"开始抓取游戏"** 按钮
 
-  - 🎓 Coaching（教练服务）   📊 数据采集
+4. 等待自动抓取完成（通常需要几分钟）
 
-  - 🎁 Gift Cards（礼品卡）   └─ 点击 "🚀 一键爬取所有游戏"
+**2. 抓取产品订单**
 
-   ```
-
-- 🛍️ **产品订单采集** - 三种模式
-
-  - 单页模式 - 快速测试3. **等待完成**
-
-  - 多页模式 - 指定页数   - 脚本会自动翻页
-
-  - 全部模式 - 完整采集   - 实时显示进度
-
-   - 自动去重合并
-
-- 💾 **数据导出** - CSV/JSON 格式，Excel 完美兼容
-
-- 🔍 **关键字筛选** - 标题关键词过滤4. **查看结果**
-
-- 📊 **实时统计** - 游戏数量、订单数量、当前页面   ```
-
-- 🗑️ **数据管理** - 独立清除游戏/订单   统计信息:
-
-   📦 游戏数量: 450+
-
-#### 📊 数据字段   ```
-
-
-
-**产品订单**:#### 预期结果
-
-- 产品链接、标题、卖家名称、卖家等级
-
-- 价格、货币、Offers数量、库存- 采集时间: 约 2-5 分钟（取决于网络速度）
-
-- 交付时间、页码、爬取时间- 数据量: 通常 400-500 个游戏
-
-- 自动处理: 
-
-#### 📁 文件位置  - ✅ 相同游戏的不同服务类型自动合并
-
-  - ✅ 去重处理
-
-```  - ✅ 分类标记
-
-G2G-Project/
-
-├── g2g-scraper.user.js    - 主脚本### 场景二: 爬取产品订单（单页模式）
-
-├── README.md               - 完整使用说明
-
-└── docs/                   - 开发文档**目标**: 快速测试或采集少量数据
+**第二步：抓取产品订单**
 
 ```
 
-#### 操作步骤
+选择游戏 → 选择服务类型 → 点击"开始抓取订单"→ 自动翻页采集1. 从游戏列表中选择一个游戏
 
-#### 🎯 使用场景
+```2. 选择对应的服务类型（如 Game Coins、Items 等）
 
-1. **选择游戏**
+3. 点击 **"开始抓取订单"** 按钮
 
-1. **爬取游戏列表** → 访问 Trending 页面 → 点击"一键爬取所有游戏"   ```
-
-2. **爬取产品订单** → 选择游戏 → 选择服务 → 选择模式 → 开始爬取   🎮 游戏选择
-
-3. **导出数据** → CSV（Excel）或 JSON 格式   ├─ 搜索框: 输入 "diablo" 或其他游戏名
-
-   └─ 点击选择游戏
-
----   ```
+**3. 导出数据**4. 脚本会自动访问产品页面并抓取数据
 
 
 
-### 3. PA Scraper2. **选择服务**
+```**第三步：导出数据**
+
+点击"导出 Excel"按钮 → 自动下载 .xlsx 文件
+
+```1. 抓取完成后，点击 **"导出 Excel"** 按钮
+
+2. 数据会自动下载为 `.xlsx` 文件
+
+#### 📊 数据字段3. 可以用 Excel 或 WPS 打开查看
+
+
+
+- 游戏名称、服务类型#### 📊 数据字段
+
+- 产品标题、链接
+
+- 卖家名称、价格- 游戏名称、服务类型
+
+- 库存、交付时间- 产品标题、产品链接
+
+- 卖家名称、价格
+
+---- 库存状态、交付时间
+
+- 更新时间
+
+### 2. G2G Scraper 使用说明
+
+---
+
+**平台**: [G2G.com](https://www.g2g.com)  
+
+**版本**: v1.1.4### 2. G2G Scraper 使用说明
+
+
+
+#### ✨ 主要功能**平台**: [G2G.com](https://www.g2g.com)  
+
+**版本**: v1.1.4
+
+- 🎮 爬取游戏列表（7种服务类型）
+
+- 🛍️ 产品订单采集（单页/多页/全部）#### ✨ 主要功能
+
+- 🔍 关键字筛选
+
+- 💾 CSV/JSON 导出- 🎮 自动爬取所有游戏（支持7种服务类型）
+
+- 📊 实时统计- 🛍️ 产品订单采集（单页/多页/全部三种模式）
+
+- 🔍 关键字筛选功能
+
+#### 📝 使用步骤- 💾 CSV/JSON 双格式导出
+
+- 📊 实时统计和进度显示
+
+**1. 爬取游戏列表**
+
+#### 📝 使用步骤
+
+```
+
+访问 https://www.g2g.com/trending/game-coins**第一步：爬取游戏列表**
+
+→ 右侧出现侧边栏
+
+→ 点击"🚀 一键爬取所有游戏"1. 访问任意 G2G Trending 页面：
+
+→ 等待3-5分钟   ```
+
+```   https://www.g2g.com/trending/game-coins
 
    ```
 
-**平台**: PA 平台     点击对应的服务按钮:
+**2. 爬取产品订单**2. 页面右侧会出现侧边栏面板
 
-**版本**: v1.0.0   ✓ 金币  - 该游戏确认支持此服务
+3. 点击 **"🚀 一键爬取所有游戏"** 按钮
 
-   ? 物品  - 可能支持此服务（需验证）
+```4. 脚本会自动遍历7种服务类型，抓取所有游戏
 
-#### ✨ 核心功能   ```
+进入游戏产品页面5. 等待3-5分钟完成
+
+→ 选择爬取模式:
+
+   • 单页模式 - 只爬当前页**第二步：爬取产品订单**
+
+   • 多页模式 - 输入页数（如10页）
+
+   • 全部模式 - 爬取所有页面1. 进入任意产品列表页面（例如某个游戏的金币页面）
+
+→ （可选）输入关键字筛选2. 在侧边栏选择爬取模式：
+
+→ 点击"🛒 开始爬取产品订单"   - **单页模式**：只爬取当前页面
+
+```   - **多页模式**：输入页数（如10页）
+
+   - **全部模式**：爬取所有页面
+
+**3. 导出数据**3. （可选）输入关键字进行筛选
+
+4. 点击 **"🛒 开始爬取产品订单"** 按钮
+
+```5. 等待爬取完成
+
+点击"📥 导出 CSV"或"📥 导出 JSON"
+
+→ 选择导出类型（游戏列表/产品订单）**第三步：导出数据**
+
+→ 自动下载文件
+
+```1. 点击 **"� 导出 CSV"** 或 **"📥 导出 JSON"**
+
+2. 选择导出类型：
+
+#### 📊 数据字段   - **游戏列表**：导出所有游戏数据
+
+   - **产品订单**：导出订单数据
+
+**游戏数据**:3. 文件自动下载
+
+- 游戏名称、链接
+
+- 服务类型、Offers 数量#### � 数据字段
 
 
 
-- 📦 **数据采集** - PA 平台特定数据采集3. **配置爬取**
+**产品订单**:**游戏数据**：
 
-- 💾 **数据导出** - 标准格式导出   ```
+- 产品标题、链接- 游戏名称、游戏链接
 
-- 🎨 **界面友好** - 简洁易用   🛍️ 产品订单采集
+- 卖家名称、等级- 服务类型（Coins/Items/Accounts 等）
 
-   ├─ 爬取模式: 单页模式
+- 价格、货币- Offers 数量
 
-#### 📁 文件位置   ├─ 关键字筛选: (可选，如 "gold")
+- Offers 数量、交付时间
 
-   └─ 点击 "🛒 开始爬取产品订单"
+**产品订单**：
 
-```   ```
+#### 🎯 支持的服务类型- 产品标题、产品链接
 
-PA-Project/
+- 卖家名称、卖家等级
 
-└── pa-scraper.user.js     - 主脚本4. **查看结果**
+1. 🪙 Game Coins（游戏金币）- 价格、货币类型
 
-```   ```
+2. 📦 Items（游戏物品）- Offers 数量、交付时间
 
-   📋 产品订单: 24
+3. 👤 Accounts（游戏账号）
 
----   ```
+4. 🚀 Boosting（代练服务）#### 🎯 支持的服务类型
+
+5. 💳 Top-up（充值服务）
+
+6. 🎓 Coaching（教练服务）1. 🪙 Game Coins（游戏金币）
+
+7. 🎁 Gift Cards（礼品卡）2. 📦 Items（游戏物品）
+
+3. 👤 Accounts（游戏账号）
+
+---4. 🚀 Boosting（代练服务）
+
+5. 💳 Top-up（充值服务）
+
+### 3. PA Scraper 使用说明6. 🎓 Coaching（教练服务）
+
+7. 🎁 Gift Cards（礼品卡）
+
+**平台**: [PlayerAuctions.com](https://www.playerauctions.com)  
+
+**版本**: v8.7.0---
 
 
 
-## 🔧 安装说明#### 预期结果
+#### ✨ 主要功能### 3. PA Scraper 使用说明
 
 
 
-### 方法一：直接安装（推荐）- 采集时间: 约 3-5 秒
+- 🎮 多游戏多服务类型**平台**: [PlayerAuctions.com](https://www.playerauctions.com)  
 
-- 数据量: 24 个产品订单（一页）
+- 🔄 智能分页和去重**版本**: v8.7.0
 
-1. 确保已安装 Tampermonkey- 包含字段: 链接、标题、卖家、价格、交付时间等
+- 🛡️ Cloudflare 验证
 
-2. 点击上方表格中的安装链接
+- 💾 CSV/JSON 导出#### ✨ 主要功能
 
-3. Tampermonkey 会自动识别并弹出安装页面### 场景三: 爬取产品订单（多页模式）
+- 📊 实时统计
 
-4. 点击"安装"按钮
+- 🎮 多游戏多服务类型支持
 
-**目标**: 采集中等数量数据
+#### 📝 使用步骤- 🔄 智能分页和 URL 去重
 
-### 方法二：手动安装
+- 🛡️ Cloudflare 验证集成
 
-#### 操作步骤
+**1. 打开面板**- 💾 CSV/JSON 导出
 
-1. 下载对应的 `.user.js` 文件
+- 📊 实时数据统计
 
-2. 打开 Tampermonkey 管理面板1. **选择游戏和服务**（同场景二）
+```
 
-3. 点击 "+" 创建新脚本
+访问 PlayerAuctions.com#### 📝 使用步骤
 
-4. 复制粘贴文件内容2. **配置多页爬取**
+→ 右侧出现深色侧边栏
 
-5. 按 `Ctrl + S` 保存   ```
+→ 点击左侧紫色按钮展开/收起**第一步：打开面板**
 
-   🛍️ 产品订单采集
+```
 
-### 验证安装   ├─ 爬取模式: 多页模式
+1. 访问 [PlayerAuctions.com](https://www.playerauctions.com)
 
-   ├─ 最大页数: 5
+**2. 爬取商品数据**2. 页面右侧会出现深色主题的侧边栏
 
-1. 访问对应的平台网站   ├─ 关键字筛选: (可选)
+3. 点击左侧的紫色按钮可以展开/收起面板
+
+```
+
+进入商品列表页面**第二步：爬取商品数据**
+
+→ 选择爬取模式:
+
+   • 当前页 - 只爬本页1. 进入任意游戏的商品列表页面
+
+   • 多页 - 输入页数2. 在侧边栏中选择爬取模式：
+
+   • 全部 - 爬所有页面   - **当前页**：只爬当前页面
+
+→ 点击"开始爬取"   - **多页**：输入页数
+
+```   - **全部**：爬取所有页面
+
+3. 点击 **"开始爬取"** 按钮
+
+**3. 导出数据**4. 查看实时进度和统计
+
+
+
+```**第三步：导出数据**
+
+点击"导出 CSV"或"导出 JSON"
+
+→ 文件自动下载1. 爬取完成后，点击 **"导出 CSV"** 或 **"导出 JSON"**
+
+```2. 文件会自动下载到本地
+
+3. CSV 文件可用 Excel 打开
+
+#### 📊 数据字段
+
+#### � 数据字段
+
+- 商品标题、链接
+
+- 卖家信息- 商品标题、商品链接
+
+- 价格、货币- 卖家信息
+
+- 商品状态、发布时间- 价格、货币
+
+- 商品状态
+
+---- 发布时间
+
+
+
+## 📊 功能对比---
+
+
+
+| 功能 | Z2U | G2G | PA |## 📊 功能对比
+
+|------|-----|-----|-----|
+
+| 游戏列表采集 | ✅ | ✅ | ✅ || 功能 | Z2U | G2G | PA |
+
+| 产品订单采集 | ✅ | ✅ | ✅ ||------|-----|-----|-----|
+
+| 多页模式 | ✅ | ✅ | ✅ || 游戏列表采集 | ✅ | ✅ | ✅ |
+
+| 关键字筛选 | ❌ | ✅ | ❌ || 产品订单采集 | ✅ | ✅ | ✅ |
+
+| CSV 导出 | ❌ | ✅ | ✅ || 多页模式 | ✅ | ✅ | ✅ |
+
+| JSON 导出 | ❌ | ✅ | ✅ || 关键字筛选 | ❌ | ✅ | ❌ |
+
+| Excel 导出 | ✅ | ❌ | ❌ || CSV 导出 | ❌ | ✅ | ✅ |
+
+| Cloudflare 绕过 | ✅ | ❌ | ✅ || JSON 导出 | ❌ | ✅ | ✅ |
+
+| 增量更新 | ✅ | ❌ | ❌ || Excel 导出 | ✅ | ❌ | ❌ |
+
+| URL 去重 | ❌ | ❌ | ✅ || Cloudflare 绕过 | ✅ | ❌ | ✅ |
+
+| 增量更新 | ✅ | ❌ | ❌ |
+
+---| URL 去重 | ❌ | ❌ | ✅ |
+
+
+
+## ❓ 常见问题---
+
+
+
+### Q1: 脚本无法正常工作？## ❓ 常见问题
+
+
+
+**解决方法**:### Q1: 脚本无法正常工作？
+
+1. 确认 Tampermonkey 已启用
+
+2. 刷新页面重试**解决方法**:
+
+3. 检查控制台错误（F12）1. 确认 Tampermonkey 已启用
+
+4. 确认脚本版本最新2. 刷新页面重试
+
+3. 检查控制台是否有错误信息（F12）
+
+### Q2: 数据导出后文件乱码？4. 确认脚本版本是最新的
+
+
+
+**解决方法**:### Q2: 数据导出后文件乱码？
+
+- **CSV**: 用 Excel 打开选择 UTF-8 编码
+
+- **JSON**: 用 VS Code 等编辑器打开**解决方法**:
+
+- **Excel**: 直接打开即可- **CSV 文件**：用 Excel 打开时选择 UTF-8 编码
+
+- **JSON 文件**：用支持 UTF-8 的编辑器打开（如 VS Code）
+
+### Q3: Cloudflare 验证失败？- **Excel 文件**：直接打开即可，已处理编码
+
+
+
+**解决方法**（Z2U/PA）:### Q3: Cloudflare 验证失败？
+
+1. 手动完成一次验证
+
+2. 脚本会记录信息**解决方法**（针对 Z2U 和 PA）:
+
+3. 后续自动处理1. 手动完成一次验证
+
+2. 脚本会记录验证信息
+
+### Q4: 爬取速度太慢？3. 后续访问会自动处理
+
+
+
+**原因和解决**:### Q4: 爬取速度太慢？
+
+- 网络延迟 → 检查网络
+
+- 页面加载慢 → 增加等待时间**原因和解决**:
+
+- 数据量大 → 使用多页模式分批爬取- 网络延迟：检查网络连接
+
+- 页面加载慢：适当增加等待时间
+
+### Q5: 如何清除已爬取的数据？- 数据量大：建议使用多页模式分批爬取
+
+
+
+**操作方法**:### Q5: 如何清除已爬取的数据？
+
+- **Z2U**: 点击"清除数据"
+
+- **G2G**: 分别清除游戏/订单**操作方法**:
+
+- **PA**: 点击"清除数据"- **Z2U**: 点击 "清除数据" 按钮
+
+- **G2G**: 分别点击 "清除游戏列表" 或 "清除产品订单"
+
+### Q6: 三个脚本可以同时安装吗？- **PA**: 点击 "清除数据" 按钮
+
+
+
+**答案**: ✅ 可以！三个脚本互不干扰，每个只在对应平台激活。### Q6: 三个脚本可以同时安装吗？
+
+
+
+---**答案**: ✅ 可以！
+
+
+
+## 📂 项目结构三个脚本互不干扰，可以同时安装使用。每个脚本只在对应的平台激活。
+
+
+
+```---
+
+game-scraper-collection/
+
+├── Z2U-Project/## � 项目文件结构
+
+│   ├── Z2U-scraper.user.js
+
+│   ├── LICENSE```
+
+│   └── docs/              # 技术文档game-scraper-collection/
+
+│├── Z2U-Project/
+
+├── G2G-Project/│   ├── Z2U-scraper.user.js
+
+│   ├── g2g-scraper.user.js│   ├── LICENSE
+
+│   ├── README.md│   └── docs/
+
+│   ├── LICENSE│       ├── Z2U_Cloudflare集成方案.md
+
+│   └── docs/              # 开发文档│       ├── Z2U产品列表元素.md
+
+││       ├── Z2U抓取器v6.0更新说明.md
+
+└── PA-Project/│       ├── Z2U抓取订单所需元素.md
+
+    ├── pa-scraper.user.js│       ├── Z2U服务列表元素.md
+
+    └── LICENSE│       └── Z2U页面类型检测说明.md
+
+```│
+
+├── G2G-Project/
+
+---│   ├── g2g-scraper.user.js
+
+│   ├── README.md
+
+## 📜 许可证│   ├── LICENSE
+
+│   └── docs/
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。│       ├── G2G-README.md
+
+│       ├── G2G产品订单元素.md
+
+---│       ├── G2G产品订单页面的翻页按钮元素.md
+
+│       ├── G2G使用说明.md
+
+## 🤝 贡献│       ├── G2G后面3个游戏列表页面的元素.md
+
+│       ├── G2G服务分类.md
+
+欢迎提交 Issue 和 Pull Request！│       ├── G2G游戏列表元素.md
+
+│       ├── G2G游戏服务类型.md
+
+---│       ├── G2G爬取有些页面的下一页按钮元素.md
+
+│       └── G2G爬取说明.md
+
+## ⭐ 支持项目│
+
+└── PA-Project/
+
+如果这个项目对你有帮助，请给个 Star ⭐️    ├── pa-scraper.user.js
+
+    └── LICENSE
+
+---```
+
+
+
+## 📧 联系方式---
+
+
+
+- GitHub: [@a1006542588](https://github.com/a1006542588)## � 许可证
+
+- Issues: [提交问题](https://github.com/a1006542588/game-scraper-collection/issues)
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+---
+
+---
+
+<div align="center">
+
+## 🤝 贡献
+
+**Made with ❤️ for Game Trading Community**
+
+欢迎提交 Issue 和 Pull Request！
+
+[⬆ 返回顶部](#-game-trading-platform-scrapers)
+
+---
+
+</div>
+
+## ⭐ 支持项目
+
+---
+
+如果这个项目对你有帮助，请给个 Star ⭐️
+
+<div id="english"></div>
+
+---
+
+# 🎮 Game Trading Platform Scrapers (English)
+
+## 📧 联系方式
+
+> Automated data collection tools for Z2U, G2G, and PlayerAuctions gaming platforms
+
+- GitHub: [@a1006542588](https://github.com/a1006542588)
+
+## 🌟 Features- Issues: [提交问题](https://github.com/a1006542588/game-scraper-collection/issues)
+
+
+
+- **Multi-Platform Support**: Z2U, G2G, PlayerAuctions---
+
+- **Comprehensive Data**: Games, orders, prices, sellers
+
+- **Multiple Formats**: CSV, XLSX, JSON export<div align="center">
+
+- **User-Friendly**: Floating panels with real-time stats
+
+- **Smart Features**: Auto-update, keyword filtering, Cloudflare bypass**Made with ❤️ for Game Trading Community**
+
+
+
+## 🚀 Quick Start</div>
+
+
+
+1. Install [Tampermonkey](https://www.tampermonkey.net/)   ├─ 最大页数: 5
+
+2. Click install links above
+
+3. Visit the platform website1. 访问对应的平台网站   ├─ 关键字筛选: (可选)
+
+4. Start scraping!
 
 2. 页面应该出现脚本的操作界面   └─ 点击 "🛒 开始爬取产品订单"
 
+## 📖 Documentation
+
 3. 如果没有出现，刷新页面或检查 Tampermonkey 是否启用   ```
 
+Each project includes detailed documentation in its respective folder.
 
+
+
+## 📊 Feature Comparison
 
 ---3. **监控进度**
 
-   - 实时显示当前页码
+| Feature | Z2U | G2G | PA |
 
-## 📊 功能对比   - 显示已爬取数量
+|---------|-----|-----|-----|   - 实时显示当前页码
 
-   - 进度条提示
+| Game List | ✅ | ✅ | ✅ |
 
-| 功能 | Z2U | G2G | PA |
+| Product Orders | ✅ | ✅ | ✅ |## 📊 功能对比   - 显示已爬取数量
 
-|------|-----|-----|-----|4. **确认对话框**
+| Multi-page | ✅ | ✅ | ✅ |
 
-| 游戏列表采集 | ✅ | ✅ | ✅ |   ```
+| Keyword Filter | ❌ | ✅ | ❌ |   - 进度条提示
 
-| 订单批量采集 | ✅ | ✅ | ✅ |   即将开始爬取产品订单
+| CSV Export | ❌ | ✅ | ✅ |
 
-| 多种服务类型 | ✅ | ✅ (7种) | ✅ |   
+| JSON Export | ❌ | ✅ | ✅ || 功能 | Z2U | G2G | PA |
 
-| CSV 导出 | ❌ | ✅ | ✅ |   模式: 多页模式 (最多 5 页)
+| Excel Export | ✅ | ❌ | ❌ |
 
-| XLSX 导出 | ✅ | ❌ | ❌ |   关键字: (无)
+| Cloudflare Bypass | ✅ | ❌ | ✅ ||------|-----|-----|-----|4. **确认对话框**
 
-| JSON 导出 | ✅ | ✅ | ✅ |   
+
+
+## 📜 License| 游戏列表采集 | ✅ | ✅ | ✅ |   ```
+
+
+
+MIT License - See [LICENSE](LICENSE) file| 订单批量采集 | ✅ | ✅ | ✅ |   即将开始爬取产品订单
+
+
+
+---| 多种服务类型 | ✅ | ✅ (7种) | ✅ |   
+
+
+
+**Version**: v1.0.0  | CSV 导出 | ❌ | ✅ | ✅ |   模式: 多页模式 (最多 5 页)
+
+**Last Updated**: 2025-10-06  
+
+**Author**: [a1006542588](https://github.com/a1006542588)| XLSX 导出 | ✅ | ❌ | ❌ |   关键字: (无)
+
+
+
+⭐ If this helps you, please give it a star!| JSON 导出 | ✅ | ✅ | ✅ |   
+
 
 | 关键字筛选 | ✅ | ✅ | ✅ |   确定继续吗?
 
