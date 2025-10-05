@@ -1,125 +1,248 @@
-# 🎮 Game Trading Platform Scrapers# 🎮 Game Trading Platform Scrapers
+# 🎮 Game Trading Platform Scrapers# 🎮 Game Trading Platform Scrapers# 🎮 Game Trading Platform Scrapers
 
 
+
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+[![Tampermonkey](https://img.shields.io/badge/Tampermonkey-compatible-orange.svg)](https://www.tampermonkey.net/)
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
+> 游戏交易平台数据采集工具集 - 包含三个独立的 Tampermonkey 脚本
+
 [![Tampermonkey](https://img.shields.io/badge/Tampermonkey-compatible-orange.svg)](https://www.tampermonkey.net/)[![Tampermonkey](https://img.shields.io/badge/Tampermonkey-compatible-orange.svg)](https://www.tampermonkey.net/)
+
+---
 
 [![Platforms](https://img.shields.io/badge/platforms-3-blue.svg)]()[![Platform](https://img.shields.io/badge/platform-3_platforms-blue.svg)]()
 
+## 📦 项目列表
 
+
+
+本仓库包含三个独立的数据采集工具：
 
 > 游戏交易平台数据采集工具集 - 支持 Z2U、G2G、PlayerAuctions 三大平台的自动化数据采集> 游戏交易平台数据采集工具集 - 支持 Z2U、G2G、PlayerAuctions 三大平台的自动化数据采集
 
+| 项目 | 平台 | 版本 | 使用说明 | 安装 |
+
+|------|------|------|---------|------|
+
+| **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.3 | [📖 使用说明](Z2U-Project/README.md) | [⬇️ 安装](https://github.com/a1006542588/game-scraper-collection/raw/main/Z2U-Project/Z2U-scraper.user.js) |
+
+| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | [📖 使用说明](G2G-Project/README.md) | [⬇️ 安装](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js) |[English](#english) | [中文](#chinese)[English](#english) | [中文](#中文)
+
+| **PA Scraper** | [PlayerAuctions](https://www.playerauctions.com) | v8.7.0 | [📖 使用说明](PA-Project/README.md) | [⬇️ 安装](https://github.com/a1006542588/game-scraper-collection/raw/main/PA-Project/pa-scraper.user.js) |
 
 
-[English](#english) | [中文](#chinese)[English](#english) | [中文](#中文)
 
-
+---
 
 ------
 
+## 🚀 快速开始
 
+
+
+### 1. 安装 Tampermonkey
 
 <div id="chinese"></div>## 📋 目录
 
+选择你的浏览器：
 
 
-## 📋 目录- [项目概览](#-项目概览)
+
+- [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+
+- [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/)## 📋 目录- [项目概览](#-项目概览)
+
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
 
 - [快速安装](#-快速安装)
 
+### 2. 选择并安装脚本
+
 - [项目概览](#-项目概览)- [使用教程](#-使用教程)
+
+点击上面表格中的"安装"链接，Tampermonkey 会自动识别并安装。
 
 - [快速安装](#-快速安装)  - [Z2U Scraper 使用说明](#1-z2u-scraper-使用说明)
 
+### 3. 查看使用说明
+
 - [使用教程](#-使用教程)  - [G2G Scraper 使用说明](#2-g2g-scraper-使用说明)
+
+每个项目都有详细的使用说明，点击"使用说明"链接查看。
 
   - [Z2U Scraper](#1-z2u-scraper-使用说明)  - [PA Scraper 使用说明](#3-pa-scraper-使用说明)
 
+---
+
   - [G2G Scraper](#2-g2g-scraper-使用说明)- [功能对比](#-功能对比)
+
+## 📊 功能对比
 
   - [PA Scraper](#3-pa-scraper-使用说明)- [常见问题](#-常见问题)
 
-- [功能对比](#-功能对比)- [许可证](#-许可证)
+| 功能 | Z2U | G2G | PA |
 
-- [常见问题](#-常见问题)
+|------|-----|-----|-----|- [功能对比](#-功能对比)- [许可证](#-许可证)
 
-- [许可证](#-许可证)---
+| 游戏列表采集 | ✅ | ✅ | ✅ |
 
+| 产品订单采集 | ✅ | ✅ | ✅ |- [常见问题](#-常见问题)
 
+| 多页模式 | ✅ | ✅ | ✅ |
 
----## 🎯 项目概览
+| 关键字筛选 | ❌ | ✅ | ❌ |- [许可证](#-许可证)---
 
+| CSV 导出 | ❌ | ✅ | ✅ |
 
+| JSON 导出 | ❌ | ✅ | ✅ |
 
-## 🎯 项目概览本仓库包含三个独立的 Tampermonkey 用户脚本，分别用于不同游戏交易平台的数据采集：
+| Excel 导出 | ✅ | ❌ | ❌ |
 
-
-
-本仓库包含三个独立的 Tampermonkey 用户脚本，用于不同游戏交易平台的数据采集：| 项目 | 平台 | 版本 | 状态 |
-
-|------|------|------|------|
-
-| 项目 | 平台 | 版本 | 状态 || **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.3 | ✅ 稳定 |
-
-|------|------|------|------|| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | ✅ 稳定 |
-
-| **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.3 | ✅ 稳定 || **PA Scraper** | [PlayerAuctions.com](https://www.playerauctions.com) | v8.7.0 | ✅ 稳定 |
-
-| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | ✅ 稳定 |
-
-| **PA Scraper** | [PlayerAuctions.com](https://www.playerauctions.com) | v8.7.0 | ✅ 稳定 |---
+| Cloudflare 绕过 | ✅ | ❌ | ✅ |---## 🎯 项目概览
 
 
+
+---
+
+
+
+## 📂 项目结构## 🎯 项目概览本仓库包含三个独立的 Tampermonkey 用户脚本，分别用于不同游戏交易平台的数据采集：
+
+
+
+```
+
+game-scraper-collection/
+
+├── Z2U-Project/本仓库包含三个独立的 Tampermonkey 用户脚本，用于不同游戏交易平台的数据采集：| 项目 | 平台 | 版本 | 状态 |
+
+│   ├── README.md              # Z2U 使用说明
+
+│   ├── Z2U-scraper.user.js|------|------|------|------|
+
+│   └── docs/                  # 技术文档
+
+│| 项目 | 平台 | 版本 | 状态 || **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.3 | ✅ 稳定 |
+
+├── G2G-Project/
+
+│   ├── README.md              # G2G 使用说明|------|------|------|------|| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | ✅ 稳定 |
+
+│   ├── g2g-scraper.user.js
+
+│   └── docs/                  # 开发文档| **Z2U Scraper** | [Z2U.com](https://www.z2u.com) | v7.4.3 | ✅ 稳定 || **PA Scraper** | [PlayerAuctions.com](https://www.playerauctions.com) | v8.7.0 | ✅ 稳定 |
+
+│
+
+├── PA-Project/| **G2G Scraper** | [G2G.com](https://www.g2g.com) | v1.1.4 | ✅ 稳定 |
+
+│   ├── README.md              # PA 使用说明
+
+│   └── pa-scraper.user.js| **PA Scraper** | [PlayerAuctions.com](https://www.playerauctions.com) | v8.7.0 | ✅ 稳定 |---
+
+│
+
+└── README.md                  # 本文件（总览）
+
+```
 
 ---## 🚀 快速安装
 
+---
 
+
+
+## ❓ 常见问题
 
 ## 🚀 快速安装### 步骤 1: 安装 Tampermonkey
 
+### 脚本无法运行？
 
 
-### 步骤 1: 安装 Tampermonkey根据你的浏览器选择对应的扩展：
+
+1. 确认 Tampermonkey 已启用
+
+2. 刷新页面### 步骤 1: 安装 Tampermonkey根据你的浏览器选择对应的扩展：
+
+3. 查看各项目的使用说明
 
 
+
+### 如何更新脚本？
 
 根据你的浏览器选择：| 浏览器 | 下载链接 |
 
+Tampermonkey 会自动检查更新，或者重新安装最新版本。
+
 |-------|---------|
+
+### 三个脚本可以同时使用吗？
 
 | 浏览器 | 下载链接 || Chrome | [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) |
 
+可以！三个脚本互不干扰，各自在对应平台工作。
+
 |-------|---------|| Firefox | [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tampermonkey/) |
+
+---
 
 | Chrome | [Chrome Web Store](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) || Edge | [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) |
 
+## 📜 许可证
+
 | Firefox | [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tampermonkey/) || Safari | [Safari Extensions](https://www.tampermonkey.net/?browser=safari) |
+
+MIT License - 详见 [LICENSE](LICENSE) 文件
 
 | Edge | [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) || Opera | [Opera Add-ons](https://addons.opera.com/extensions/details/tampermonkey-beta/) |
 
+---
 
+
+
+## 🤝 贡献
 
 ### 步骤 2: 安装脚本### 步骤 2: 安装脚本
 
+欢迎提交 Issue 和 Pull Request！
 
+
+
+---
 
 点击对应链接安装：选择你需要的平台脚本点击安装：
 
+## 📧 联系
 
 
-| 平台 | 安装链接 || 平台 | 安装链接 |
 
-|------|---------||------|---------|
+- GitHub: [@a1006542588](https://github.com/a1006542588)
 
-| **Z2U** | [安装 Z2U Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/Z2U-Project/Z2U-scraper.user.js) || **Z2U** | [安装 Z2U Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/Z2U-Project/Z2U-scraper.user.js) |
+- Issues: [提交问题](https://github.com/a1006542588/game-scraper-collection/issues)| 平台 | 安装链接 || 平台 | 安装链接 |
 
-| **G2G** | [安装 G2G Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js) || **G2G** | [安装 G2G Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js) |
 
-| **PA** | [安装 PA Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/PA-Project/pa-scraper.user.js) || **PA** | [安装 PA Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/PA-Project/pa-scraper.user.js) |
 
+---|------|---------||------|---------|
+
+
+
+<div align="center">| **Z2U** | [安装 Z2U Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/Z2U-Project/Z2U-scraper.user.js) || **Z2U** | [安装 Z2U Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/Z2U-Project/Z2U-scraper.user.js) |
+
+
+
+**⭐ 如果对你有帮助，请给个 Star！**| **G2G** | [安装 G2G Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js) || **G2G** | [安装 G2G Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js) |
+
+
+
+Made with ❤️ for Game Trading Community| **PA** | [安装 PA Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/PA-Project/pa-scraper.user.js) || **PA** | [安装 PA Scraper](https://github.com/a1006542588/game-scraper-collection/raw/main/PA-Project/pa-scraper.user.js) |
+
+
+
+</div>
 
 
 ------
