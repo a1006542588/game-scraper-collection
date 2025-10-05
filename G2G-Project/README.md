@@ -1,14 +1,26 @@
-# G2G Scraper - 使用说明# 🎮 G2G Scraper - 完整使用说明
+# G2G Scraper - 使用说明# G2G Scraper - 使用说明# 🎮 G2G Scraper - 完整使用说明
 
 
+
+[![Version](https://img.shields.io/badge/version-1.1.4-blue.svg)](https://github.com/a1006542588/game-scraper-collection)
+
+[![Platform](https://img.shields.io/badge/platform-G2G.com-orange.svg)](https://www.g2g.com)
 
 [![Version](https://img.shields.io/badge/version-1.1.4-blue.svg)](https://github.com/a1006542588/game-scraper-collection)[![Version](https://img.shields.io/badge/version-1.1.4-blue.svg)](https://github.com/a1006542588/g2g-scraper)
 
+> G2G.com 游戏交易平台数据采集工具
+
 [![Platform](https://img.shields.io/badge/platform-G2G.com-orange.svg)](https://www.g2g.com)[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+---
 
 [![Platform](https://img.shields.io/badge/platform-Tampermonkey-orange.svg)](https://www.tampermonkey.net/)
 
+## 🚀 快速安装
+
 > G2G.com 游戏交易平台数据采集工具
+
+**点击安装**: [g2g-scraper.user.js](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js)
 
 > 一个功能强大的 Tampermonkey 用户脚本，专为 G2G.com 平台设计，支持自动化采集游戏列表、产品订单等数据，提供CSV/JSON导出功能。
 
@@ -16,99 +28,198 @@
 
 ---
 
-## 🚀 快速安装
-
-## 📋 目录
-
-**点击安装**: [g2g-scraper.user.js](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js)
-
-- [功能概览](#-功能概览)
-
----- [快速开始](#-快速开始)
-
-- [详细使用教程](#-详细使用教程)
-
-## ✨ 主要功能- [数据格式说明](#-数据格式说明)
-
-- [常见问题](#-常见问题)
-
-- 🎮 **爬取游戏列表** - 自动采集所有游戏（7种服务类型）- [更新日志](#-更新日志)
-
-- 🛍️ **产品订单采集** - 单页/多页/全部三种模式- [技术说明](#-技术说明)
-
-- 🔍 **关键字筛选** - 按标题关键词过滤产品
-
-- 💾 **CSV/JSON 导出** - 双格式导出，Excel 兼容---
-
-- 📊 **实时统计** - 游戏数量、订单数量实时显示
-
-## ✨ 功能概览
+## ✨ 主要功能
 
 ---
 
-### 核心功能
+- 🎮 **爬取游戏列表** - 自动采集所有游戏
+
+- 🛍️ **产品订单采集** - 单页/多页/全部模式## 🚀 快速安装
+
+- 🔍 **关键字筛选** - 按标题过滤
+
+- 💾 **CSV/JSON 导出** - Excel 兼容## 📋 目录
+
+- 📊 **实时统计** - 数量实时显示
+
+**点击安装**: [g2g-scraper.user.js](https://github.com/a1006542588/game-scraper-collection/raw/main/G2G-Project/g2g-scraper.user.js)
+
+---
+
+- [功能概览](#-功能概览)
 
 ## 📝 使用教程
 
-| 功能模块 | 说明 | 状态 |
+---- [快速开始](#-快速开始)
+
+### 第一步：爬取游戏列表
+
+- [详细使用教程](#-详细使用教程)
+
+```
+
+1. 访问 G2G Trending 页面## ✨ 主要功能- [数据格式说明](#-数据格式说明)
+
+   https://www.g2g.com/trending/game-coins
+
+- [常见问题](#-常见问题)
+
+2. 右侧出现侧边栏
+
+- 🎮 **爬取游戏列表** - 自动采集所有游戏（7种服务类型）- [更新日志](#-更新日志)
+
+3. 点击"🚀 一键爬取所有游戏"
+
+- 🛍️ **产品订单采集** - 单页/多页/全部三种模式- [技术说明](#-技术说明)
+
+4. 等待 3-5 分钟完成
+
+```- 🔍 **关键字筛选** - 按标题关键词过滤产品
+
+
+
+### 第二步：爬取产品订单- 💾 **CSV/JSON 导出** - 双格式导出，Excel 兼容---
+
+
+
+```- 📊 **实时统计** - 游戏数量、订单数量实时显示
+
+1. 进入游戏的产品页面
+
+## ✨ 功能概览
+
+2. 选择爬取模式:
+
+   • 单页 - 只爬当前页---
+
+   • 多页 - 输入页数
+
+   • 全部 - 爬所有页### 核心功能
+
+
+
+3. （可选）输入关键字## 📝 使用教程
+
+
+
+4. 点击"🛒 开始爬取产品订单"| 功能模块 | 说明 | 状态 |
+
+```
 
 ### 第一步：爬取游戏列表|---------|------|------|
 
+### 第三步：导出数据
+
 | 🎮 游戏列表采集 | 自动爬取所有游戏，支持7种服务类型 | ✅ |
 
-```| 🛍️ 产品订单采集 | 三种模式（单页/多页/全部），支持关键字筛选 | ✅ |
+```
 
-1. 访问任意 G2G Trending 页面:| 💾 数据导出 | CSV/JSON格式，Excel完美兼容 | ✅ |
+1. 点击"📥 导出 CSV"或"📥 导出 JSON"```| 🛍️ 产品订单采集 | 三种模式（单页/多页/全部），支持关键字筛选 | ✅ |
 
-   https://www.g2g.com/trending/game-coins| 🔍 关键字筛选 | 标题关键词过滤 | ✅ |
+
+
+2. 选择类型（游戏/订单）1. 访问任意 G2G Trending 页面:| 💾 数据导出 | CSV/JSON格式，Excel完美兼容 | ✅ |
+
+
+
+3. 文件自动下载   https://www.g2g.com/trending/game-coins| 🔍 关键字筛选 | 标题关键词过滤 | ✅ |
+
+```
 
 | 📊 实时统计 | 游戏数量、订单数量、当前页面 | ✅ |
 
+---
+
 2. 页面右侧会出现侧边栏面板| 🗑️ 数据管理 | 独立清除游戏/订单，互不影响 | ✅ |
+
+## 📊 数据字段
 
 | 🎨 美观界面 | 侧边栏浮动面板，响应式设计 | ✅ |
 
+**游戏数据**: 游戏名称、链接、服务类型、Offers数量
+
 3. 点击"🚀 一键爬取所有游戏"按钮| 🛡️ 超时保护 | 网络慢速下自动重试（20秒） | ✅ |
 
+**产品订单**: 产品标题、链接、卖家、价格、货币、交付时间
 
+
+
+---
 
 4. 等待 3-5 分钟完成### 支持的服务类型
 
+## ❓ 常见问题
+
    （脚本会自动遍历 7 种服务类型）
+
+### Q: 侧边栏没有显示？
 
 ```1. 🪙 **Game Coins** - 游戏金币
 
+**A**: 检查 Tampermonkey 是否启用，刷新页面
+
 2. 📦 **Items** - 游戏物品
+
+### Q: 爬取停止？
 
 **预期结果**: 采集 400-500 个游戏3. 👤 **Accounts** - 游戏账号
 
+**A**: 查看控制台（F12）错误，检查网络连接
+
 4. 🚀 **Boosting** - 代练服务
+
+### Q: CSV 乱码？
 
 ### 第二步：爬取产品订单5. 💳 **Top-up** - 充值服务
 
+**A**: 用 Excel 导入功能，选择 UTF-8 编码
+
 6. 🎓 **Coaching** - 教练服务
+
+### Q: 无法翻页？
 
 ```7. 🎁 **Gift Cards** - 礼品卡/皮肤
 
+**A**: 检查是否最后一页，使用多页模式设置合理页数
+
 1. 进入任意产品列表页面
+
+---
 
    （例如：某个游戏的金币页面）---
 
+## 📄 更新日志
 
 
-2. 选择爬取模式:## 🚀 快速开始
 
-   • 单页模式 - 只爬当前页（快速测试）
+### v1.1.4 (2025-10-06)
 
-   • 多页模式 - 输入页数如 10 页### 步骤 1: 安装 Tampermonkey
+- 修复 CSV 数据串行问题2. 选择爬取模式:## 🚀 快速开始
 
-   • 全部模式 - 爬取所有页面
+- 修复金币页面数据提取
 
-根据你的浏览器选择对应的扩展：
+- 优化清除按钮布局   • 单页模式 - 只爬当前页（快速测试）
 
-3. （可选）输入关键字筛选
 
-   例如: gold, legendary| 浏览器 | 下载链接 |
+
+---   • 多页模式 - 输入页数如 10 页### 步骤 1: 安装 Tampermonkey
+
+
+
+## 📞 支持   • 全部模式 - 爬取所有页面
+
+
+
+[提交 Issue](https://github.com/a1006542588/game-scraper-collection/issues) | [开发文档](docs/)根据你的浏览器选择对应的扩展：
+
+
+
+---3. （可选）输入关键字筛选
+
+
+
+**返回**: [主页](../README.md) | **版本**: v1.1.4   例如: gold, legendary| 浏览器 | 下载链接 |
+
 
 |-------|---------|
 
