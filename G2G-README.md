@@ -1,6 +1,6 @@
 # 🎮 G2G Scraper - 完整使用说明
 
-[![Version](https://img.shields.io/badge/version-1.1.4-blue.svg)](https://github.com/a1006542588/z2u-scraper)
+[![Version](https://img.shields.io/badge/version-1.1.4-blue.svg)](https://github.com/a1006542588/g2g-scraper)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Tampermonkey-orange.svg)](https://www.tampermonkey.net/)
 
@@ -65,7 +65,7 @@
 
 **方法一：直接安装（推荐）**
 
-1. 点击这个链接: [g2g-scraper.user.js](https://github.com/a1006542588/z2u-scraper/raw/master/g2g-scraper.user.js)
+1. 点击这个链接: [g2g-scraper.user.js](https://github.com/a1006542588/g2g-scraper/raw/master/g2g-scraper.user.js)
 2. Tampermonkey 会自动识别并弹出安装页面
 3. 点击 **"安装"** 按钮
 
@@ -656,7 +656,7 @@ https://www.g2g.com/categories/{game}-gift-cards
 
 ### GitHub Issues
 
-提交问题: [GitHub Issues](https://github.com/a1006542588/z2u-scraper/issues)
+提交问题: [GitHub Issues](https://github.com/a1006542588/g2g-scraper/issues)
 
 ### 功能建议
 

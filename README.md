@@ -39,7 +39,7 @@
 
 点击下方链接直接安装：
 ```
-https://github.com/a1006542588/z2u-scraper/raw/main/main.user.js
+https://github.com/a1006542588/z2u-scraper/raw/refs/heads/master/main.user.js
 ```
 
 **方法二：手动安装**

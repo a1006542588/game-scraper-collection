@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Z2U 订单抓取器
 // @namespace    http://tampermonkey.net/
-// @version      7.4.1
-// @description  Z2U.com 订单数据抓取工具 - 抓取产品订单详细信息(标题/链接/交付时间/卖家/价格) + 关键字筛选 + Cloudflare自动验证(支持PAT)
+// @version      7.4.3
+// @description  Z2U.com 订单数据抓取工具 - 抓取产品订单详细信息(标题/链接/交付时间/卖家/价格) + 关键字筛选 + Cloudflare自动验证(优先处理Turnstile)
 // @author       You
 // @match        https://www.z2u.com/*
 // @match        https://*.z2u.com/*
 // @match        http://www.z2u.com/*
 // @match        http://*.z2u.com/*
+// @match        *://challenges.cloudflare.com/*
 // @icon         https://www.z2u.com/favicon.ico
 // @grant        GM_addStyle
 // @grant        GM_setClipboard
@@ -17,14 +18,16 @@
 // @grant        unsafeWindow
 // @connect      z2u.com
 // @connect      api.yescaptcha.com
-// @run-at       document-end
-// @noframes
+// @connect      challenges.cloudflare.com
+// @run-at       document-start
 // ==/UserScript==
 
 (function() {
     'use strict';
 
-    console.log('%c[Z2U抓取器] 脚本加载中...', 'color: #FF6B35; font-weight: bold; font-size: 14px;');
+    console.log('%c[Z2U抓取器] 🚀 v7.4.2 脚本加载中...', 'color: #FF6B35; font-weight: bold; font-size: 14px;');
+    console.log('%c[Z2U抓取器] 📍 当前URL:', 'color: #0066CC', window.location.href);
+    console.log('%c[Z2U抓取器] 📄 页面标题:', 'color: #0066CC', document.title);
 
     // Cloudflare 验证配置
     const CF_CONFIG = {
@@ -122,23 +125,45 @@
 
     // 提取 sitekey
     function extractSitekey() {
-        // 从 data-sitekey 属性提取
+        console.log('%c[Z2U-CF] 开始提取 sitekey...', 'color: #17A2B8');
+        
+        // 方法1: 从 data-sitekey 属性提取
         const turnstileEl = document.querySelector('[data-sitekey]');
         if (turnstileEl) {
-            return turnstileEl.getAttribute('data-sitekey');
+            const sitekey = turnstileEl.getAttribute('data-sitekey');
+            console.log('%c[Z2U-CF] ✓ 从 data-sitekey 属性提取成功:', 'color: #28A745', sitekey);
+            return sitekey;
         }
 
-        // 从 iframe 提取
+        // 方法2: 查找其他可能的 Turnstile 元素
+        const cfElements = document.querySelectorAll('[class*="turnstile"], [id*="turnstile"], [class*="cf-"], [id*="cf-"]');
+        for (const el of cfElements) {
+            const sitekey = el.getAttribute('data-sitekey') || el.getAttribute('sitekey');
+            if (sitekey) {
+                console.log('%c[Z2U-CF] ✓ 从元素属性提取成功:', 'color: #28A745', sitekey);
+                return sitekey;
+            }
+        }
+
+        // 方法3: 从 iframe 提取
         const iframe = document.querySelector('iframe[src*="challenges.cloudflare.com"]');
         if (iframe) {
             const match = iframe.src.match(/sitekey=([^&]+)/);
-            if (match) return match[1];
+            if (match) {
+                console.log('%c[Z2U-CF] ✓ 从 iframe 提取成功:', 'color: #28A745', match[1]);
+                return match[1];
+            }
         }
 
-        // 从页面源代码提取
+        // 方法4: 从页面源代码提取
         const bodyText = document.body.innerHTML;
         const match = bodyText.match(/sitekey['":\s]+['"]([a-zA-Z0-9_-]+)['"]/);
-        if (match) return match[1];
+        if (match) {
+            console.log('%c[Z2U-CF] ✓ 从页面源码提取成功:', 'color: #28A745', match[1]);
+            return match[1];
+        }
+
+        console.log('%c[Z2U-CF] ✗ 未能提取 sitekey', 'color: #DC3545');
 
         return null;
     }
@@ -339,30 +364,44 @@
 
     // 检测 CF 挑战类型
     function detectChallengeType() {
-        // 检测 PAT (Private Access Token) 挑战
-        const patScript = document.querySelector('script[src*="challenge-platform/h/b/pat"]');
-        if (patScript) {
-            return 'PAT';
-        }
-
-        // 检测 Turnstile 挑战
+        console.log('%c[Z2U-CF] 开始检测挑战类型...', 'color: #17A2B8');
+        
+        // 优先检测 Turnstile 挑战（最重要，需要 API 处理）
         const turnstile = document.querySelector('[data-sitekey]');
-        if (turnstile) {
+        const checkbox = document.querySelector('input[type="checkbox"][id*="cf"]');
+        const cfTurnstile = document.querySelector('.cf-turnstile, #cf-turnstile');
+        
+        if (turnstile || checkbox || cfTurnstile) {
+            console.log('%c[Z2U-CF] ✓ 检测到 Turnstile 挑战', 'color: #FF9800; font-weight: bold', {
+                hasSitekey: !!turnstile,
+                hasCheckbox: !!checkbox,
+                hasTurnstileDiv: !!cfTurnstile
+            });
             return 'Turnstile';
         }
 
         // 检测传统 JS 挑战
         const jsChallenge = document.querySelector('#cf-chl-widget, .cf-challenge-form');
         if (jsChallenge) {
+            console.log('%c[Z2U-CF] ✓ 检测到 JS 挑战', 'color: #FFC107');
             return 'JSChallenge';
         }
 
         // 检测 Managed Challenge
         const managedChallenge = document.querySelector('script[src*="challenge-platform/h/b/cmg"]');
         if (managedChallenge) {
+            console.log('%c[Z2U-CF] ✓ 检测到 Managed 挑战', 'color: #FFC107');
             return 'Managed';
         }
 
+        // 最后检测 PAT (Private Access Token) 挑战
+        const patScript = document.querySelector('script[src*="challenge-platform/h/b/pat"]');
+        if (patScript) {
+            console.log('%c[Z2U-CF] ✓ 检测到 PAT 挑战', 'color: #FFC107');
+            return 'PAT';
+        }
+
+        console.log('%c[Z2U-CF] ⚠️ 未识别的挑战类型', 'color: #DC3545');
         return 'Unknown';
     }
 
@@ -408,12 +447,16 @@
     // 主验证流程
     async function handleCloudflareTurnstile() {
         try {
+            console.log('%c[Z2U-CF] ========================================', 'color: #00BCD4; font-weight: bold');
+            console.log('%c[Z2U-CF] 🚀 开始执行 Cloudflare 验证流程', 'color: #00BCD4; font-weight: bold');
+            console.log('%c[Z2U-CF] ========================================', 'color: #00BCD4; font-weight: bold');
+            
             updateCfStatus('检测验证类型...', 'checking');
             addCfLog('🔍 开始检测验证类型...');
 
             const challengeType = detectChallengeType();
             addCfLog(`✓ 检测到挑战类型: ${challengeType}`);
-            console.log('%c[Z2U-CF] 挑战类型: ' + challengeType, 'color: #FFC107; font-weight: bold');
+            console.log('%c[Z2U-CF] ✓ 挑战类型: ' + challengeType, 'color: #FF9800; font-weight: bold; font-size: 14px');
 
             // 根据挑战类型采取不同策略
             if (challengeType === 'PAT' || challengeType === 'Managed') {
@@ -1349,22 +1392,42 @@
         document.getElementById('z2u-service-count').textContent = totalServices;
     }
 
-    // 渲染游戏列表
-    function renderGamesList(searchTerm = '') {
+    // 渲染游戏列表（优化版：虚拟滚动）
+    let currentGamesPage = 0;
+    const GAMES_PER_PAGE = 50;
+    let filteredGames = [];
+    
+    function renderGamesList(searchTerm = '', reset = true) {
         const gamesList = document.getElementById('z2u-games-list');
-        gamesList.innerHTML = '';
-
-        // 过滤游戏
-        const filtered = scraperData.games.filter(game =>
-            game.名称.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-
-        if (filtered.length === 0) {
-            gamesList.innerHTML = '<div style="padding: 12px; color: #B0B0B0; text-align: center;">未找到匹配的游戏</div>';
-            return;
+        
+        if (reset) {
+            gamesList.innerHTML = '';
+            currentGamesPage = 0;
+            
+            // 过滤游戏
+            filteredGames = scraperData.games.filter(game =>
+                game.名称.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            
+            if (filteredGames.length === 0) {
+                gamesList.innerHTML = '<div style="padding: 12px; color: #B0B0B0; text-align: center;">未找到匹配的游戏</div>';
+                return;
+            }
+            
+            // 显示统计信息
+            const statsDiv = document.createElement('div');
+            statsDiv.style.cssText = 'padding: 8px 12px; background: rgba(23,162,184,0.1); color: #17A2B8; font-size: 11px; border-radius: 4px; margin-bottom: 5px;';
+            statsDiv.innerHTML = `📊 共找到 <b>${filteredGames.length}</b> 个游戏${searchTerm ? ` (搜索: "${searchTerm}")` : ''}`;
+            gamesList.appendChild(statsDiv);
         }
 
-        filtered.forEach((game, index) => {
+        // 计算当前页要渲染的游戏
+        const start = currentGamesPage * GAMES_PER_PAGE;
+        const end = Math.min(start + GAMES_PER_PAGE, filteredGames.length);
+        const gamesToRender = filteredGames.slice(start, end);
+
+        // 渲染当前页的游戏
+        gamesToRender.forEach((game, index) => {
             const item = document.createElement('div');
             item.className = 'z2u-game-item';
             item.innerHTML = `
@@ -1384,6 +1447,20 @@
 
             gamesList.appendChild(item);
         });
+        
+        // 显示加载更多按钮（如果还有更多游戏）
+        currentGamesPage++;
+        if (end < filteredGames.length) {
+            const loadMoreBtn = document.createElement('div');
+            loadMoreBtn.style.cssText = 'padding: 10px; text-align: center; color: #17A2B8; cursor: pointer; background: rgba(23,162,184,0.1); border-radius: 4px; margin-top: 5px; font-size: 12px;';
+            loadMoreBtn.innerHTML = `⬇️ 加载更多 (还有 ${filteredGames.length - end} 个游戏)`;
+            loadMoreBtn.onclick = (e) => {
+                e.stopPropagation();
+                loadMoreBtn.remove();
+                renderGamesList(searchTerm, false);
+            };
+            gamesList.appendChild(loadMoreBtn);
+        }
     }
 
     // 当游戏被选中时
@@ -2364,11 +2441,61 @@
         console.log('%c提示: 可在控制台使用 window.Z2U_Scraper 访问所有功能', 'color: #17A2B8;');
     }
 
-    // 启动
+    // 启动 - 优先检查 CF 页面
+    function startup() {
+        console.log('%c[Z2U抓取器] 🔍 检查页面状态...', 'color: #17A2B8');
+        
+        // 等待 body 加载
+        if (!document.body) {
+            console.log('%c[Z2U抓取器] ⏳ 等待 body 元素...', 'color: #FFC107');
+            setTimeout(startup, 100);
+            return;
+        }
+        
+        // 优先检查是否为 CF 验证页面
+        const isCFPage = window.location.href.includes('challenges.cloudflare.com') ||
+                        document.title.toLowerCase().includes('just a moment') ||
+                        document.title.includes('请稍候') ||
+                        checkForCloudflare();
+        
+        if (isCFPage) {
+            console.log('%c[Z2U-CF] 🛡️ 检测到 Cloudflare 验证页面，启动 CF 处理模块', 'color: #FFC107; font-weight: bold');
+            console.log('%c[Z2U-CF] 📍 页面URL:', 'color: #17A2B8', window.location.href);
+            console.log('%c[Z2U-CF] 📄 页面标题:', 'color: #17A2B8', document.title);
+            
+            // 等待页面元素完全加载
+            let waitCount = 0;
+            const waitForElements = setInterval(() => {
+                waitCount++;
+                console.log(`%c[Z2U-CF] ⏳ 等待页面元素加载... (${waitCount}/5)`, 'color: #FFC107');
+                
+                // 检查关键元素是否存在
+                const hasElements = document.querySelector('[data-sitekey]') || 
+                                   document.querySelector('input[type="checkbox"]') ||
+                                   document.querySelector('.cf-turnstile') ||
+                                   document.querySelector('script[src*="challenge-platform"]');
+                
+                if (hasElements || waitCount >= 5) {
+                    clearInterval(waitForElements);
+                    console.log('%c[Z2U-CF] ✓ 页面元素已加载，开始处理验证', 'color: #28A745; font-weight: bold');
+                    
+                    if (typeof handleCloudflareTurnstile === 'function') {
+                        handleCloudflareTurnstile();
+                    } else {
+                        console.error('%c[Z2U-CF] ✗ handleCloudflareTurnstile 函数未定义！', 'color: #DC3545; font-weight: bold');
+                    }
+                }
+            }, 500);
+        } else {
+            console.log('%c[Z2U抓取器] ✓ 正常页面，加载完整功能', 'color: #28A745');
+            init();
+        }
+    }
+    
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', startup);
     } else {
-        setTimeout(init, 500);
+        setTimeout(startup, 100);
     }
 
 })();
