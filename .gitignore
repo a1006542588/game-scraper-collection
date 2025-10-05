@@ -21,3 +21,7 @@ update.ps1
 # 绯荤粺鏂囦欢
 .DS_Store
 Thumbs.db
+
+# 文档目录（仅本地）
+*/docs/
+**/**/docs/
